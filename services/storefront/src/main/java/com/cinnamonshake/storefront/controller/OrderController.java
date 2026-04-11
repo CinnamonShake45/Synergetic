@@ -4,6 +4,7 @@ import com.cinnamonshake.storefront.dto.OrderRequest;
 import com.cinnamonshake.storefront.dto.OrderResponse;
 import com.cinnamonshake.storefront.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,12 +14,13 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    // TEMP: hardcoded user (replace with JWT later)
-    private final Long USER_ID = 1L;
-
     @PostMapping
-    public OrderResponse createOrder(@RequestBody OrderRequest request) {
-        return orderService.createOrder(USER_ID, request);
+    public OrderResponse createOrder(
+            @RequestBody OrderRequest request,
+            Authentication authentication
+    ) {
+        String username = authentication.getName();
+        return orderService.createOrder(username, request);
     }
 
     @PostMapping("/{id}/pay")

@@ -17,9 +17,9 @@ public class DeviceService {
     private final DeviceRepository deviceRepository;
     private final UserRepository userRepository;
 
-    public List<DeviceResponse> getUserDevices(Long userId) {
+    public List<DeviceResponse> getUserDevices(String username) {
 
-        User user = userRepository.findById(userId)
+        User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         return deviceRepository.findByUser(user)

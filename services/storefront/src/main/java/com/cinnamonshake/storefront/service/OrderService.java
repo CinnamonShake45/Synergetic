@@ -20,9 +20,9 @@ public class OrderService {
     private final UserRepository userRepository;
 
     // 🔹 CREATE ORDER
-    public OrderResponse createOrder(Long userId, OrderRequest request) {
+    public OrderResponse createOrder(String username, OrderRequest request) {
 
-        User user = userRepository.findById(userId)
+        User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         Order order = new Order();

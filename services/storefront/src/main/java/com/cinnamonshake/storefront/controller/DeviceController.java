@@ -4,6 +4,7 @@ import com.cinnamonshake.storefront.dto.DeviceResponse;
 import com.cinnamonshake.storefront.service.DeviceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
 
 import java.util.List;
 
@@ -14,13 +15,11 @@ public class DeviceController {
 
     private final DeviceService deviceService;
 
-    // TEMP: replace with JWT later
-    private final Long USER_ID = 1L;
-
     // 🔹 Get all devices of logged-in user
-    @GetMapping
-    public List<DeviceResponse> getUserDevices() {
-        return deviceService.getUserDevices(USER_ID);
+    @GetMapping("/my")
+    public List<DeviceResponse> getUserDevices(Authentication authentication) {
+        String username = authentication.getName();
+        return deviceService.getUserDevices(username);
     }
 
     // 🔹 Get specific device by serial
