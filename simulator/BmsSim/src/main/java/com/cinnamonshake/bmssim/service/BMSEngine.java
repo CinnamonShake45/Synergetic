@@ -13,6 +13,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @Service
 public class BMSEngine {
 
+    @Getter
     private BatteryState battery = null;
     @Getter
     private final SimulationLoadConfig config = new SimulationLoadConfig();

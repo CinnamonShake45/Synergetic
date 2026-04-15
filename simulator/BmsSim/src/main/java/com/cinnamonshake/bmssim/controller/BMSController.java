@@ -1,5 +1,6 @@
 package com.cinnamonshake.bmssim.controller;
 
+import com.cinnamonshake.bmssim.model.BatteryState;
 import com.cinnamonshake.bmssim.model.SimulationLoadConfig;
 import com.cinnamonshake.bmssim.service.BMSEngine;
 import com.cinnamonshake.bmssim.model.BatteryInitRequest;
@@ -67,4 +68,15 @@ public class BMSController {
 
         return "Load configuration updated";
     }
+
+    @GetMapping("/battery/state")
+    public BatteryState getState() {
+        return engine.getBattery();
+    }
+
+    @GetMapping("/load/state")
+    public SimulationLoadConfig getLoad() {
+        return engine.getConfig();
+    }
+
 }
