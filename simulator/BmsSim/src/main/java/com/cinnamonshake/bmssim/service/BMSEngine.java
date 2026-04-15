@@ -36,17 +36,22 @@ public class BMSEngine {
         }
 
         if (this.battery == null) {
+
+            if( init == null){
+                throw new IllegalStateException("Battery not initialized. Provide init data");
+            }
+
             this.battery = BatteryState.builder()
-                    .bmsID(init.getBmsID())
+                    .bmsId(init.getBmsId())
                     .capacityAh(init.getCapacityAh() != null ? init.getCapacityAh() : 2.5)
                     .maxVoltage(init.getMaxVoltage() != null ? init.getMaxVoltage() : 4.2)
                     .minVoltage(init.getMinVoltage() != null ? init.getMinVoltage() : 3.0)
                     .currentSoC(init.getInitialSoC() != null ? init.getInitialSoC() : 50.0)
                     .build();
 
-            System.out.println("Battery initialized: " + battery.getBmsID() + " " + battery);
+            System.out.println("Battery initialized: " + battery.getBmsId() + " " + battery);
         } else {
-            System.out.println("Resuming BMS: " + battery.getBmsID());
+            System.out.println("Resuming BMS: " + battery.getBmsId());
         }
 
         running.set(true);

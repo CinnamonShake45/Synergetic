@@ -4,6 +4,7 @@ import com.cinnamonshake.bmssim.model.SimulationConfig;
 import com.cinnamonshake.bmssim.service.BMSEngine;
 import com.cinnamonshake.bmssim.model.BatteryInitRequest;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/bms")
@@ -16,7 +17,7 @@ public class BMSController {
     }
 
     @PostMapping("/start")
-    public String start(@RequestBody(required = false) BatteryInitRequest init) {
+    public String start(@Valid @RequestBody(required = false) BatteryInitRequest init) {
         engine.start(init);
         return "BMS Started";
     }

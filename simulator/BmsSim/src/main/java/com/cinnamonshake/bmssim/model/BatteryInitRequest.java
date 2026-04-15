@@ -14,7 +14,7 @@ public class BatteryInitRequest {
             regexp = "^BMS-[A-F0-9]{8}$",
             message = "bmsID must match format BMS-XXXXXXXX (hex)"
     )
-    private String bmsID;
+    private String bmsId;
     private Double capacityAh;
     private Double maxVoltage;
     private Double minVoltage;
