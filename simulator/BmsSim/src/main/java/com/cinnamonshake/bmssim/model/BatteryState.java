@@ -11,6 +11,7 @@ import lombok.Builder;
 @Builder
 public class BatteryState {
 
+    private String bmsID;
     private Double capacityAh;
     private Double maxVoltage;
     private Double minVoltage;

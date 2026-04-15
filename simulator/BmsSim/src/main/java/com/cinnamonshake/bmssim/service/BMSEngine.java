@@ -37,19 +37,16 @@ public class BMSEngine {
 
         if (this.battery == null) {
             this.battery = BatteryState.builder()
-                    .capacityAh(init != null && init.getCapacityAh() != null ? init.getCapacityAh() : 2.5)
-                    .maxVoltage(init != null && init.getMaxVoltage() != null ? init.getMaxVoltage() : 4.2)
-                    .minVoltage(init != null && init.getMinVoltage() != null ? init.getMinVoltage() : 3.0)
-                    .currentSoC(init != null && init.getInitialSoC() != null ? init.getInitialSoC() : 50.0)
+                    .bmsID(init.getBmsID())
+                    .capacityAh(init.getCapacityAh() != null ? init.getCapacityAh() : 2.5)
+                    .maxVoltage(init.getMaxVoltage() != null ? init.getMaxVoltage() : 4.2)
+                    .minVoltage(init.getMinVoltage() != null ? init.getMinVoltage() : 3.0)
+                    .currentSoC(init.getInitialSoC() != null ? init.getInitialSoC() : 50.0)
                     .build();
 
-            System.out.println("Battery initialized: " + battery);
+            System.out.println("Battery initialized: " + battery.getBmsID() + " " + battery);
         } else {
-            System.out.println("Resuming existing battery state");
-        }
-
-        if (this.battery == null && init == null) {
-            throw new IllegalStateException("Battery not initialized. Provide init data or call /reset.");
+            System.out.println("Resuming BMS: " + battery.getBmsID());
         }
 
         running.set(true);
@@ -168,14 +165,7 @@ public class BMSEngine {
         if (running.get()) {
             stop();
         }
-
-        // Reset battery to defaults
-        this.battery = BatteryState.builder()
-                .capacityAh(2.5)
-                .maxVoltage(4.2)
-                .minVoltage(3.0)
-                .currentSoC(50.0)
-                .build();
+        this.battery = null;
 
         // Reset config
         config.setLoadCurrent(1.0);
@@ -187,5 +177,4 @@ public class BMSEngine {
 
         System.out.println("BMS reset to default state");
     }
-
 }
