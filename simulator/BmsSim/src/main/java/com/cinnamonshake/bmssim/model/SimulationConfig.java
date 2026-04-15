@@ -11,9 +11,13 @@ import lombok.Builder;
 @Builder
 public class SimulationConfig {
 
+    @Builder.Default
     private Double loadCurrent = 1.0;
+    @Builder.Default
     private Double chargeCurrent = 1.0;
+    @Builder.Default
     private Boolean charging = false;
+    @Builder.Default
     private Long intervalMs = 1500L;
 
     public boolean isCharging() {
