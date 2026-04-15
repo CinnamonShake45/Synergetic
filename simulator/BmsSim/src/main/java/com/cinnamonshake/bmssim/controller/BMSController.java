@@ -1,6 +1,6 @@
 package com.cinnamonshake.bmssim.controller;
 
-import com.cinnamonshake.bmssim.model.SimulationConfig;
+import com.cinnamonshake.bmssim.model.SimulationLoadConfig;
 import com.cinnamonshake.bmssim.service.BMSEngine;
 import com.cinnamonshake.bmssim.model.BatteryInitRequest;
 import org.springframework.web.bind.annotation.*;
@@ -46,8 +46,8 @@ public class BMSController {
         return "Resumed";
     }
 
-    @PostMapping("/config")
-    public String updateConfig(@RequestBody SimulationConfig config) {
+    @PostMapping("/load/update")
+    public String updateLoadConfig(@RequestBody SimulationLoadConfig config) {
 
         if (config.getLoadCurrent() != null) {
             engine.getConfig().setLoadCurrent(config.getLoadCurrent());
@@ -65,6 +65,6 @@ public class BMSController {
             engine.getConfig().setIntervalMs(config.getIntervalMs());
         }
 
-        return "Updated";
+        return "Load configuration updated";
     }
 }

@@ -9,7 +9,7 @@ import lombok.Builder;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SimulationConfig {
+public class SimulationLoadConfig {
 
     @Builder.Default
     private Double loadCurrent = 1.0;

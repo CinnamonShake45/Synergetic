@@ -1,7 +1,7 @@
 package com.cinnamonshake.bmssim.service;
 
 import com.cinnamonshake.bmssim.model.BatteryState;
-import com.cinnamonshake.bmssim.model.SimulationConfig;
+import com.cinnamonshake.bmssim.model.SimulationLoadConfig;
 import com.cinnamonshake.bmssim.model.BatteryInitRequest;
 import lombok.Getter;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class BMSEngine {
 
     private BatteryState battery = null;
     @Getter
-    private final SimulationConfig config = new SimulationConfig();
+    private final SimulationLoadConfig config = new SimulationLoadConfig();
 
     private final AtomicBoolean running = new AtomicBoolean(false);
     private final AtomicBoolean paused = new AtomicBoolean(false);
